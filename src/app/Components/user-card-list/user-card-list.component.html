@@ -1,0 +1,32 @@
+<h1> User List Card </h1>
+<nav class="navbar">
+  <input [(ngModel)]="idToSearch" (ngModelChange)="searchOnId()" type="text" name="id" class="form-control" placeholder="Enter Id to search">
+</nav>
+        <div *ngIf="userResponse.data.length > 0" class="card-list">
+          <mat-selection-list class="list-horizontal" #shoes [multiple]="false">
+            <mat-list-option *ngFor="let user of userResponse.data" [value]="user.id">
+                <mat-card (click)="onSelectionChange(user.id)" class="example-card">
+                    <mat-card-header>
+                      <div mat-card-avatar class="example-header-image" 
+                      style="background-image: url({{user.avatar}});"></div>
+                      <mat-card-title id="card-title">{{user.first_name}} {{user.last_name}}</mat-card-title>
+                      <mat-card-subtitle id="card-subtitle">{{user.email}}</mat-card-subtitle>
+                    </mat-card-header>
+                  </mat-card>
+              </mat-list-option>
+        </mat-selection-list>        
+ <!--
+   <p>
+    Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+  </p>
+ --> 
+</div>
+  <mat-paginator
+      [length]="userResponse.total"
+      [pageSize]="userResponse.per_page"
+      (page)="onPageChange($event)"
+      aria-label="Select page of users">
+    </mat-paginator>
+    <div *ngIf="isLoading" style=  "display: flex; justify-content: center; align-items: center; position: absolute; top: 40%; left: 45%;">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>

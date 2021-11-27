@@ -1,0 +1,11 @@
+<div class="user-info">
+    <p> Fisrt Name:  {{user.first_name}}</p>
+    <p> last Name: {{user.last_name}}</p>
+    <p> Email: {{user.email}}</p>
+    <img src="{{user.avatar}}" style="width: 40%; height: 60%;">
+    <br>
+    <button class="button-info" mat-button (click)="navigateToCardList()">Back</button>
+</div>
+<div *ngIf="isLoading" style=  "display: flex; justify-content: center; align-items: center; position: absolute; top: 40%; left: 45%;">
+    <mat-spinner color="accent"></mat-spinner>
+</div>
