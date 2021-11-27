@@ -17,6 +17,7 @@ export class UserCardListComponent implements OnInit {
 
   page : number = 0;
   isLoading: boolean = true;
+  filteredUser: User[] = [];
   public idToSearch: string = "";
   userResponse: UserResponse = {
     page: 0,
@@ -41,6 +42,7 @@ export class UserCardListComponent implements OnInit {
         this.userResponse = userResponse;
         localStorage[CACHE_KEY] = JSON.stringify(userResponse);
         this.isLoading= false;
+        this.filteredUser = userResponse.data;
       })
     ).subscribe();
   }
@@ -58,13 +60,14 @@ export class UserCardListComponent implements OnInit {
 
   public searchOnId() {
     if(this.idToSearch != ""){
-      this.userResponse.data = this.userResponse.data.filter(
+      console.log(this.idToSearch);
+      this.filteredUser = this.userResponse.data.filter(
         userAfterFilter => {
           return userAfterFilter.id.toString().match(this.idToSearch);
         }
       )
     }else{
-      this.ngOnInit();
+      this.filteredUser = this.userResponse.data;
     }
   }
 }
