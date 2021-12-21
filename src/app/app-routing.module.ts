@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './Components/user-list/user-list.component';
 
 const routes: Routes = [
-  {path: "*", redirectTo: "/user/card"},
+  {path: " ", redirectTo: "/user/card"},
   {path: "user/list", component: UserListComponent},
   {path: "user/card", component: UserCardListComponent},
   {path: 'user/view/:id', component: UserViewComponent},
